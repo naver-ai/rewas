@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-
+    <link rel="stylesheet" href="css/hover.css">
     <!-- <link href="css/slider.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
@@ -53,16 +53,16 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Intro</a>
+                        <a class="inline-block py-2 px-4 text-black no-underline" href="index.html#">Intro</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#overview">Overview</a>
+                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="index.html#overview">Overview</a>
                     </li>
                     <li class="mr-3">
                         <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="download.html">Download</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="citation.html">Citation</a>
+                        <a class="inline-block font-bold text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="">Citation</a>
                     </li>
                 </ul>
                 <!-- <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Action</button> -->
@@ -83,10 +83,7 @@
             <div class="flex flex-col w-full md:w-4/5 justify-center items-start text-center md:text-left">
                 <!-- <p class="uppercase tracking-loose w-full"></p> -->
                 <h1 class="my-4 text-5xl font-bold leading-tight">Context-Aware Emotion Recognition</h1>
-                <p class="leading-normal text-2xl mb-8">
-                    Large-Scale Static & Dynamic Emotion Recognition Benchmark<br/>
-                    ICCV 2019
-                </p>
+                <p class="leading-normal text-2xl mb-8">Large-Scale Static & Dynamic Benchmark</p>
                 <!-- <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Subscribe</button> -->
 
             </div>
@@ -118,122 +115,48 @@
 
 
 
-
-    <section class="bg-white border-b py-8">
-
-        <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">CAER</h1>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Anger</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media3.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Fear</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/fear.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Disgust</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media5.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Happy</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media6.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full p-6 flex flex-col flex-grow flex-shrink" style="max-width:12.5%;"></div>
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink" style="max-width:25%;">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Sad</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/sad.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink" style="max-width:25%;">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Surprise</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/surprise.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink" style="max-width:25%;">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Neutral</div>
-                    <div class="px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="bg-gray-100 border-b py-8" id="overview">
+    <section class="bg-white border-b py-8" id="citation">
         <div class="container max-w-5xl mx-auto m-8">
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Overview</h1>
+            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Citation</h1>
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
 
             <div class="flex flex-wrap">
                 <div class="p-6">
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">We introduce a CAER benchmark consisting of more than 13,000 videos</h3>
-                    <p class="text-gray-600 mb-8">
-                        This benchmark contains more than 13,000 annotated videos.<br />
-                        You can use CAER benchmark to train deep convolution neural networks for emotion recognition.<br />
-                        The videos are annotated with an extended list of 7 emotion categories. <br />
+                    <h3 class="text-xl text-gray-800 leading-none mb-3">
+                        Researcher shall use CAER benchmark only for non-commercial research and educational purposes.
                         <br />
+                        If you use this dataset in your research, please cite this publication:
+                    </h3>
+                    <div class="w-full mb-4">
+                        <div class="h-1 mx-auto gradient opacity-25 my-0 py-0 rounded-t"></div>
+                    </div>
+                    <p class="text-xl text-gray-800 leading-none mb-3 mb-8">
+                        <a href="https://easy00.github.io/" class="sm-link sm-link_bg sm-link12">
+                            <span class="sm-link__label">Jiyoung Lee</span>
+                        </a>,
+                        <a href="https://seungryong.github.io/"class="sm-link sm-link_bg sm-link12">
+                            <span class="sm-link__label">Seungryong Kim</span>
+                        </a>,
+                        <a href="" class="sm-link sm-link_bg sm-link12">
+                            <span class="sm-link__label">Sunok Kim</span>
+                        </a>,
+                        <a href="" class="sm-link sm-link_bg sm-link12">
+                            <span class="sm-link__label">JungIn Park</span>
+                        </a>,
+                        and
+                        <a href="https://diml.yonsei.ac.kr/"class="sm-link sm-link_bg sm-link12">
+                            <span class="sm-link__label">Kwanghoon Sohn</span>
+                        </a>,
+                        <br/>
+                        "Context-Aware Emotion Recognition Networks,"<br />
+                        IEEE International Conference on Computer Vision (ICCV), Oct. 2019.
                     </p>
 
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Annotation process</h3>
-                    <img class="w-full md:w-2/3 p-6 flex flex-col flex-grow flex-shrink" style="margin:auto;" src="file/annot.png" />
+                    <a href="file/JLee_iccv2019_CAER-Net.pdf" class="sm-link sm-link_padding-all sm-link6">
+                        <span class="sm-link__label">Download paper</span>
+                    </a>
                 </div>
             </div>
 
