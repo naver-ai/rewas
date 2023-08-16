@@ -1,372 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143690801-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Face-styled Diffusion Model for Text-to-Speech.">
+  <meta name="keywords" content="Face-TTS, TTS, Audiovisual learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAER (ICCV 2019)</title>
 
-      gtag('config', 'UA-143690801-2');
-    </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CAER | Context-Aware Emotion Recognition</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
 
-    <!-- <link href="css/slider.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/NAVER_AI_Symbol_FullColor.png"> -->
 
-    <style>
-        .gradient {
-			background: linear-gradient(90deg, #d53369 0%, #daae51 100%);"
-		}
-	</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  .btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+  }
+
+  #topText {
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  </style>
 </head>
+<body>
 
-<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://lee-jiyoung.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
 
-    <!--Nav-->
-    <nav id="header" class="fixed w-full z-30 top-0 text-white">
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div> -->
+    </div>
 
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+  </div>
+</nav>
 
-            <div class="pl-4 flex items-center">
-                <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="index.html">
-                    <!--Icon from: http://www.potlabicons.com/ -->
-                    <!-- <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.005 512.005">
-				<rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502" transform="matrix(1,0,0,1,0,0)" fill="rgb(0,0,0)" />
-				<path class="plane-take-off" d=" M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z "/>
-                </svg> -->
-                    CAER
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-3 publication-title">Context-aware Emotion Recognition Networks (ICCV 2019)</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://lee-jiyoung.github.io">Jiyoung Lee</a>,</span>
+            <span class="author-block">
+              <a href="https://cvlab.korea.ac.kr/members/faculty">Seungryong Kim</a>,
+            <span class="author-block">
+              <a href="https://cvlab.kau.ac.kr/home">Sunok Kim</a>,</span>
+            <span class="author-block">
+              <a href="https://soowhanchung.github.io">Jungin Park</a>,
+            <span class="author-block">
+              <a href="https://diml.yonsei.ac.kr/professor/">Kwanghoon Sohn</a>
+            </span>
+          </div>
+
+
+          <div class="is-size-5 publication-authors">
+            (Work done at all authors in Yonsei University)
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/1908.05913"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
                 </a>
+              </span>
             </div>
 
-            <div class="block lg:hidden pr-4">
-                <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-teal-500 appearance-none focus:outline-none">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center">
-                    <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Intro</a>
-                    </li>
-                    <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#overview">Overview</a>
-                    </li>
-                    <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="download.html">Download</a>
-                    </li>
-                    <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="citation.html">Citation</a>
-                    </li>
-                    <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-                <!-- <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Action</button> -->
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
-    </nav>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        CAER benchmark contains more than 13,000 annotated videos. </br>
+        (CAER-S contains 70k frame images sampled from CAER.)</br>
+        You can use CAER benchmark for emotion recognition.</br>
+        The videos are annotated with an extended list of 7 emotion categories.</br>
+      </h2>
+    </div>
+  </div>
+</section>
 
 
-
-
-    <!--Hero-->
-    <div class="pt-24">
-
-        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <!--Left Col-->
-            <div class="flex flex-col w-full md:w-4/5 justify-center items-start text-center md:text-left">
-                <!-- <p class="uppercase tracking-loose w-full"></p> -->
-                <h1 class="my-4 text-5xl font-bold leading-tight">Context-Aware Emotion Recognition</h1>
-                <p class="leading-normal text-2xl mb-8">
-                    Large-Scale Static & Dynamic Emotion Recognition Benchmark<br/>
-                    ICCV 2019
-                </p>
-                <!-- <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Subscribe</button> -->
-
-            </div>
-            <!--Right Col-->
-            <!-- <div class="w-full md:w-3/5 py-6 text-center">
-			<img class="w-full md:w-4/5 z-50" src="hero.png">
-		</div> -->
-
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <p id="topText">Surprise</p>
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/file/sample/Surprise.mp4"
+                    type="video/mp4">
+          </video>
         </div>
+        <div class="item item-chair-tp">
+          <p id="topText">Sad</p>
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/file/sample/Sad.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <p id="topText">Fear</p>
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/file/sample/Fear.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <p id="topText">Anger</p>
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/file/sample/Anger.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <p id="topText">Happy</p>
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/file/sample/Happy.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <p id="topText">Neutral</p>
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/file/sample/Neutral.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Traditional techniques for emotion recognition have focused on the facial expression analysis only, thus providing limited ability to encode context that comprehensively represents the emotional responses. We present deep networks for context-aware emotion recognition, called CAER-Net, that exploit not only human facial expression but also context information in a joint and boosting manner. The key idea is to hide human faces in a visual scene and seek other contexts based on an attention mechanism. Our networks consist of two sub-networks, including two-stream encoding networks to seperately extract the features of face and context regions, and adaptive fusion networks to fuse such features in an adaptive fashion. We also introduce a novel benchmark for context-aware emotion recognition, called CAER, that is more appropriate than existing benchmarks both qualitatively and quantitatively. 
+            On several benchmarks, CAER-Net proves the effect of context for emotion recognition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Download</h2>
+
+    <h3 class="title is-5" style="background:RoyalBlue; color:white; display:inline;">
+    The CAER dataset is available to download for research purposes. </br>
+    The copyright remains with the original owners of the video.
+   </h3>
+    
+    <div class="column is-full-width">
+      <p class="container">
+        Special thanks to Zhicheng Zhang (Nankai University) and Iris Dominguez (UPNA) for helping us share CAER and CAER-S again.
+      </p>
+      
+      <h3 class="title is-5">CAER-S</h3>
+      <p>
+      The size of the CAER-S dataset is approximately 13.5GB.<br>
+      Extract file with the following code.<br>
+        <code>
+          zip -s 0 caers_split.zip --out caers.zip;
+          unzip caers.zip;
+        </code>
+      </p>
+
+      <p>
+        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1TGwKprghhECNyCRJzi7XhbH4O3n0N_Xf/view?usp=sharing'">
+          <i class="fa fa-download"></i> CAER-S 1/5</button>
+        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1NqTGKG_9i6c0QmeTb4o2xKlAZSSr1QPA/view?usp=sharing'">
+          <i class="fa fa-download"></i> CAER-S 2/5</button>
+        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1qt_C3lqn0MESRRkyp1JvNj23u9kWwrZW/view?usp=sharing'">
+          <i class="fa fa-download"></i> CAER-S 3/5</button> <br><br>
+        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1MHinoWJIU7EdL7Wt6tNHTM-1NtmJUFti/view?usp=sharing'">
+          <i class="fa fa-download"></i> CAER-S 4/5</button>
+        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1fxKxU2YjvC9XLcOz4OcvU1_DMJP_kLUc/view?usp=sharing'">
+          <i class="fa fa-download"></i> CAER-S 5/5</button>
+      </p>
     </div>
 
-
-    <div class="relative -mt-12 lg:-mt-24">
-        <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-                    <path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
-                        opacity="0.100000001"></path>
-                    <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
-                </g>
-                <g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
-                </g>
-            </g>
-        </svg>
+    
+    <div class="column is-full-width">
+      <h3 class="title is-5">CAER</h3>
+      <p>
+        This benchmark contains more than 13K annotated dynamic videos.</br>
+        The benchmark is consisted of train, validation and test folders.</br>
+      </p>
+      <p>
+        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1JsdbBkulkIOqrchyDnML2GEmuwi6E_d2/view?usp=sharing'">
+          <i class="fa fa-download"></i> CAER
+        </button>
+      </p>
     </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <h3 class="title is-5" style="background:RoyalBlue; color:white; display:inline;">
+      Please cite the following if you make use of the dataset.
+     </h3>
+  
+    <pre><code>@inproceedings{lee2019context,
+  author    = {Lee, Jiyoung and Kim, Seungryong and Kim, Sunok and Park, Jungin and Sohn, Kwanghoonn},
+  title     = {Context-aware emotion recognition networks},
+  booktitle = {Proceedings of the IEEE/CVF international conference on computer vision},
+  year      = {2019},
+}</code></pre>
+  </div>
+</section>
 
 
 
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Acknowledgements</h2>
+    <div class="column is-full-width">
+      <p>
+        This research was supported by Next-Generation Information Computing Development Program through the National Research Foundation of Korea(NRF) funded by the Ministry of Science and ICT (NRF-2017M3C4A7069370).
+      </p>
+    </div>
+  </div>
 
-    <section class="bg-white border-b py-8">
+</section>
 
-        <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">CAER</h1>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Anger</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media3.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Fear</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/fear.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Disgust</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media5.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Happy</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media6.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full p-6 flex flex-col flex-grow flex-shrink" style="max-width:12.5%;"></div>
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink" style="max-width:25%;">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Sad</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/sad.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink" style="max-width:25%;">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Surprise</div>
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/surprise.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/4 p-6 flex flex-col flex-grow flex-shrink" style="max-width:25%;">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                    <div class="w-full font-bold text-xl text-gray-800 px-6">Neutral</div>
-                    <div class="px-6">
-                        <video width="320" height="180" controls autoplay loop muted>
-                            <source src="./file/sample/media1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/lee-jiyoung" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This website refers to <a href="https://nerfies.github.io">Nerfies website</a>.
+          </p>
         </div>
-
-    </section>
-
-
-    <section class="bg-gray-100 border-b py-8" id="overview">
-        <div class="container max-w-5xl mx-auto m-8">
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Overview</h1>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
-
-            <div class="flex flex-wrap">
-                <div class="p-6">
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">We introduce a CAER benchmark consisting of more than 13,000 videos</h3>
-                    <p class="text-gray-600 mb-8">
-                        This benchmark contains more than 13,000 annotated videos.<br />
-                        You can use CAER benchmark to train deep convolution neural networks for emotion recognition.<br />
-                        The videos are annotated with an extended list of 7 emotion categories. <br />
-                        <br />
-                    </p>
-
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Annotation process</h3>
-                    <img class="w-full md:w-2/3 p-6 flex flex-col flex-grow flex-shrink" style="margin:auto;" src="file/annot.png" />
-                </div>
-            </div>
-            <p class="text-gray-600 mb-8">
-                This research was supported by Next-Generation Information Computing Development Program through the National Research Foundation of Korea(NRF) funded by the Ministry of Science and ICT (NRF-2017M3C4A7069370)
-            </p>
-        </div>
-        </div>
-    </section>
-
-
-
-
-    <footer class="bg-white">
-        <div class="container mx-auto  px-8">
-
-            <div class="w-full flex flex-col py-6">
-                <div class="flex-1">
-                    <p class="uppercase text-gray-500">Last update: Aug 2019</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-
-
-    <!-- jQuery if you need it
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  -->
-
-    <script>
-        var scrollpos = window.scrollY;
-        var header = document.getElementById("header");
-        var navcontent = document.getElementById("nav-content");
-        var navaction = document.getElementById("navAction");
-        var brandname = document.getElementById("brandname");
-        var toToggle = document.querySelectorAll(".toggleColour");
-
-        document.addEventListener('scroll', function() {
-
-            /*Apply classes for slide in bar*/
-            scrollpos = window.scrollY;
-
-            if (scrollpos > 10) {
-                header.classList.add("bg-white");
-                navaction.classList.remove("bg-white");
-                navaction.classList.add("gradient");
-                navaction.classList.remove("text-gray-800");
-                navaction.classList.add("text-white");
-                //Use to switch toggleColour colours
-                for (var i = 0; i < toToggle.length; i++) {
-                    toToggle[i].classList.add("text-gray-800");
-                    toToggle[i].classList.remove("text-white");
-                }
-                header.classList.add("shadow");
-                navcontent.classList.remove("bg-gray-100");
-                navcontent.classList.add("bg-white");
-            } else {
-                header.classList.remove("bg-white");
-                navaction.classList.remove("gradient");
-                navaction.classList.add("bg-white");
-                navaction.classList.remove("text-white");
-                navaction.classList.add("text-gray-800");
-                //Use to switch toggleColour colours
-                for (var i = 0; i < toToggle.length; i++) {
-                    toToggle[i].classList.add("text-white");
-                    toToggle[i].classList.remove("text-gray-800");
-                }
-
-                header.classList.remove("shadow");
-                navcontent.classList.remove("bg-white");
-                navcontent.classList.add("bg-gray-100");
-
-            }
-
-        });
-    </script>
-
-    <script>
-        /*Toggle dropdown list*/
-        /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-
-        var navMenuDiv = document.getElementById("nav-content");
-        var navMenu = document.getElementById("nav-toggle");
-
-        document.onclick = check;
-
-        function check(e) {
-            var target = (e && e.target) || (event && event.srcElement);
-
-            //Nav Menu
-            if (!checkParent(target, navMenuDiv)) {
-                // click NOT on the menu
-                if (checkParent(target, navMenu)) {
-                    // click on the link
-                    if (navMenuDiv.classList.contains("hidden")) {
-                        navMenuDiv.classList.remove("hidden");
-                    } else {
-                        navMenuDiv.classList.add("hidden");
-                    }
-                } else {
-                    // click both outside link and outside menu, hide menu
-                    navMenuDiv.classList.add("hidden");
-                }
-            }
-
-        }
-
-        function checkParent(t, elm) {
-            while (t.parentNode) {
-                if (t == elm) {
-                    return true;
-                }
-                t = t.parentNode;
-            }
-            return false;
-        }
-    </script>
-
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
-
 </html>
