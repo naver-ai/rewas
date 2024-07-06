@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Face-styled Diffusion Model for Text-to-Speech.">
-  <meta name="keywords" content="Face-TTS, TTS, Audiovisual learning">
+        content="Read, Watch and Scream! Sound Generation from Text and Video">
+  <meta name="keywords" content="Text-and-video-to-sound generation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CAER (ICCV 2019)</title>
+  <title>ReWaS</title>
 
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -19,7 +19,8 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <!-- <link rel="icon" href="./static/images/NAVER_AI_Symbol_FullColor.png"> -->
+  <link rel="stylesheet" href="./static/css/slide.css">
+  <link rel="icon" href="./static/images/NAVER_AI_Symbol_FullColor.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -32,19 +33,6 @@
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-  .btn {
-    background-color: DodgerBlue;
-    border: none;
-    color: white;
-    padding: 12px 30px;
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-  /* Darker background on mouse-over */
-  .btn:hover {
-    background-color: RoyalBlue;
-  }
 
   #topText {
     color: black;
@@ -54,6 +42,8 @@
   }
 
   </style>
+
+
 </head>
 <body>
 
@@ -72,26 +62,6 @@
           <i class="fas fa-home"></i>
       </span>
       </a>
-
-      <!-- <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div> -->
     </div>
 
   </div>
@@ -103,36 +73,54 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-3 publication-title">Context-Aware Emotion Recognition Networks (ICCV 2019)</h1>
+          <h1 class="title is-3 publication-title">Read, Watch and Scream! <br/> Sound Generation from Text and Video</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://lee-jiyoung.github.io">Jiyoung Lee</a>,</span>
+              <a href="">Yujin Jeong</a><sup>*</sup>&emsp;
+            </span>
             <span class="author-block">
-              <a href="https://cvlab.korea.ac.kr/members/faculty">Seungryong Kim</a>,
+              <a href="https://github.com/YunjiKim">Yunji Kim</a>&emsp;
+            </span>
             <span class="author-block">
-              <a href="https://cvlab.kau.ac.kr/home">Sunok Kim</a>,</span>
+              <a href="https://sanghyukchun.github.io/home/">Sanghyuk Chun</a>&emsp;
+            </span>
             <span class="author-block">
-              <a href="https://park-jungin.github.io/">Jungin Park</a>,
-            <span class="author-block">
-              <a href="https://diml.yonsei.ac.kr/professor/">Kwanghoon Sohn</a>
+              <a href="https://lee-jiyoung.github.io">Jiyoung Lee</a><sup>†</sup>
             </span>
           </div>
 
-
-          <div class="is-size-5 publication-authors">
-            (Work done at all authors in Yonsei University)
+          <div class="is-size-7">
+            <sup>*</sup> Works done during an internship at NAVER AI Lab&emsp;
+            <sup>†</sup> Corresponding author
           </div>
+
+          <br/>
+          <div class="is-size-5 publication-authors">
+            NAVER AI Lab
+          </div>
+          <br/>
+
+          
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/1908.05913"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
+                </a>
+              </span>&ensp;
+              <span class="link-block">
+                <a href="https://github.com/naver-ai/rewas"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
                 </a>
               </span>
             </div>
@@ -147,63 +135,11 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <h2 class="subtitle has-text-centered">
-        CAER benchmark contains more than 13,000 annotated videos. </br>
-        (CAER-S contains 70k frame images sampled from CAER.)</br>
-        You can use CAER benchmark for emotion recognition.</br>
-        The videos are annotated with an extended list of 7 emotion categories.</br>
-      </h2>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <p id="topText">Surprise</p>
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/file/sample/Surprise.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <p id="topText">Sad</p>
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/file/sample/Sad.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <p id="topText">Happy</p>
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/file/sample/Happy.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <p id="topText">Fear</p>
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/file/sample/Fear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <p id="topText">Anger</p>
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/file/sample/Anger.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <p id="topText">Neutral</p>
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/file/sample/Neutral.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
+      <img class="content"  width="100%" src="./static/images/example-1.png">
+      <div class="content has-text-centered">
+        <b> An example of audio generation requiring both text and video control:</b>
+        The text instruction "dog growling" is used for the text control. 
+        The video-to-audio (V2A) or text-to-audio (T2A) generation methods cannot understand the detailed semantics from texts (the dog is growling, not barking) or video (the dog is biting something, and the alignment), respectively.
       </div>
     </div>
   </div>
@@ -218,103 +154,457 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Traditional techniques for emotion recognition have focused on the facial expression analysis only, thus providing limited ability to encode context that comprehensively represents the emotional responses. We present deep networks for context-aware emotion recognition, called CAER-Net, that exploit not only human facial expression but also context information in a joint and boosting manner. The key idea is to hide human faces in a visual scene and seek other contexts based on an attention mechanism. Our networks consist of two sub-networks, including two-stream encoding networks to seperately extract the features of face and context regions, and adaptive fusion networks to fuse such features in an adaptive fashion. We also introduce a novel benchmark for context-aware emotion recognition, called CAER, that is more appropriate than existing benchmarks both qualitatively and quantitatively. 
-            On several benchmarks, CAER-Net proves the effect of context for emotion recognition.
+            Multimodal generative models have shown impressive advances with the help of powerful diffusion models.
+            Despite the progress, generating sound solely from text poses challenges in ensuring comprehensive scene depiction and temporal alignment.
+            Meanwhile, video-to-sound generation limits the flexibility to prioritize sound synthesis for specific objects within the scene.
+            To tackle these challenges, we propose a novel video-and-text-to-sound generation method, called **ReWaS**, where video serves as a conditional control for a text-to-audio generation model.
+            Our method estimates the structural information of audio (namely, energy) from the video while receiving key content cues from a user prompt.
+            We employ a well-performing text-to-sound model to consolidate the video control, which is much more efficient for training multimodal diffusion models with massive triplet-paired (audio-video-text) data.
+            In addition, by separating the generative components of audio, it becomes a more flexible system that allows users to freely adjust the energy, surrounding environment, and primary sound source according to their preferences.
+            Experimental results demonstrate that our method shows superiority in terms of quality, controllability, and training efficiency.
           </p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
-
-<section class="section">
-  <div class="container is-max-desktop content">
-    <h2 class="title is-3">Download</h2>
-
-    <h3 class="title is-5" style="background:RoyalBlue; color:white; display:inline;">
-    The CAER dataset is available to download for research purposes. </br>
-    The copyright remains with the original owners of the video.
-   </h3>
     
-    <div class="column is-full-width">
-      <p class="container">
-        Special thanks to Zhicheng Zhang (Nankai University) and Iris Dominguez (UPNA) for helping us share CAER and CAER-S again.
-      </p>
+    </br>
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        
       
-      <hr>
-      <h3 class="title is-5">CAER-S</h3>
-      <p>
-      The size of the CAER-S dataset is approximately 13.5GB.<br>
-      The benchmark is consisted of train and test folders.<br>
-      You can freely configure the training and validation sets from the train folder.<br><br>
-      Extract download files with the following code.<br>
-        <code>
-          zip -s 0 caers_split.zip --out caers.zip;
-          unzip caers.zip;
-        </code>
-      </p>
+      <h2 class="title is-3">Generation results</h2>
+      
+      
+      <div class="content has-text-justified">
+        <h4 class="title is-5">Temporal alignment</h4>
+        ReWaS can capture <b>small movement</b>, <b>short transition</b> and <b>silent moment</b>.
+      </div>
+      
+      <div class="columns is-centered">
 
-      <p>
-        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1TGwKprghhECNyCRJzi7XhbH4O3n0N_Xf/view?usp=sharing'">
-          <i class="fa fa-download"></i> CAER-S 1/5</button>
-        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1NqTGKG_9i6c0QmeTb4o2xKlAZSSr1QPA/view?usp=sharing'">
-          <i class="fa fa-download"></i> CAER-S 2/5</button>
-        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1qt_C3lqn0MESRRkyp1JvNj23u9kWwrZW/view?usp=sharing'">
-          <i class="fa fa-download"></i> CAER-S 3/5</button> <br><br>
-        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1MHinoWJIU7EdL7Wt6tNHTM-1NtmJUFti/view?usp=sharing'">
-          <i class="fa fa-download"></i> CAER-S 4/5</button>
-        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1fxKxU2YjvC9XLcOz4OcvU1_DMJP_kLUc/view?usp=sharing'">
-          <i class="fa fa-download"></i> CAER-S 5/5</button>
-      </p>
-    <!-- </div> -->
+        <div class="column content">
+          <p id="topText" style="font-size:1rem;">Lions growling</p>
+          <video poster="" id="" controls loop playsinline height="100%">
+            <source src="./static/videos/0_generated_lions_growling_29067.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="column content">
+          <p id="topText" style="font-size:1rem;">Skateboarding</p>
+          <video poster="" id="" controls loop playsinline height="100%">
+            <source src="./static/videos/0_generated_skateboarding_41500 (4).mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="column content">
+          <p id="topText" style="font-size:1rem;">Alarm clock ringing</p>
+          <video poster="" id="" controls loop playsinline height="100%">
+            <source src="./static/videos/0_generated_alarm_clock_ringing_31012.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
 
-    <hr>
-    <!-- <div class="column is-full-width"> -->
-      <h3 class="title is-5">CAER</h3>
-      <p>
-        This benchmark contains more than 13K annotated dynamic videos.</br>
-        The benchmark is consisted of train, validation and test folders.</br>
-      </p>
-      <p>
-        <button class="btn" onclick="location.href='https://drive.google.com/file/d/1JsdbBkulkIOqrchyDnML2GEmuwi6E_d2/view?usp=sharing'">
-          <i class="fa fa-download"></i> CAER
-        </button>
-      </p>
+      </div>
+
+      <div class="content has-text-justified">
+        <h4 class="title is-5">Effectiveness of video condition</h4>
+        Multiple semantics in the video are transferred through energy control. 
+        Even if there is missing information in the text prompt, the energy control complements this.
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column content">
+          <p id="topText" style="font-size:1rem;">Prompt: car engine</p>
+          <video poster="" id="" controls loop playsinline height="100%">
+            <source src="./static/videos/0_generated_car_engine_starting_111658.mp4"
+                    type="video/mp4">
+          </video>
+          <h5 class="title is-5">
+            <b>Generation</b>: 🔊 car engine + 🔊 <text style="color:RoyalBlue;">spray</text> 
+          </h5>
+        </div>
+        <div class="column content">
+          <p id="topText" style="font-size:1rem;">Prompt: darts</p>
+          <video poster="" id="" controls loop playsinline height="100%">
+            <source src="./static/videos/0_generated_playing_darts_164054.mp4"
+                    type="video/mp4">
+          </video>
+          <h5 class="title is-5">
+            <b>Generation</b>: 🔊 dart + 🔊 <text style="color:RoyalBlue;">people talking</text> 
+          </h5>
+        </div>
+
+      </div>
+
+      <div class="content has-text-justified">
+        <h4 class="title is-5">Comparison with baselines</h4>
+      </div>
+      
+      </br>
+
+      <div class="slideshow-container">
+
+        
+
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_dog_growling_101329.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_dog_growling_101329.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_dog_growling_101329.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_dog_growling_101329.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_people_screaming_100166.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_people_screaming_100166.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_people_screaming_100166.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_people_screaming_100166.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_orchestra_36279.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_orchestra_36279.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_orchestra_36279.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_orchestra_36279.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mySlides fade">
+          <div class="numbertext">4 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_car_engine_starting_194060.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_car_engine_starting_194060.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_car_engine_starting_194060.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_car_engine_starting_194060.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mySlides fade">
+          <div class="numbertext">5 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_sharpen_knife_20795.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_sharpen_knife_20795.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_sharpen_knife_20795.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_sharpen_knife_20795.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">6 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_playing_banjo_22705.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_playing_banjo_22705.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_playing_banjo_22705.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_playing_banjo_22705.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">7 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours)</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_cat_growling_160136.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_cat_growling_160136.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_cat_growling_160136.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_cat_growling_160136.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mySlides fade">
+          <div class="numbertext">8 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours) <span style="font-size:1em;">[Prompt: canary calling]</span></p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_canary_calling_9734.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_canary_calling_9734.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_canary_calling_9734.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_canary_calling_9734.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">9 / 9</div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">ReWaS (ours) <span style="font-size:1rem;">[Prompt: chainsawing trees]</span></p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/ours/0_generated_chainsawing_trees_126825.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">SpecVQGAN</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/specvqgan/0_generated_chainsawing_trees_126825.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p id="topText">Diff-foley</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/diff_foley/0_generated_chainsawing_trees_126825.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column content">
+              <p id="topText">Im2wav</p>
+              <video controls playsinline style="width: 100%">
+              <source src="./static/videos/im2wav/0_generated_chainsawing_trees_126825.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <a class="prevslide" onclick="plusSlides(-1)">❮</a>
+        <a class="nextslide" onclick="plusSlides(1)">❯</a>
+
+      </div>
+      
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span> 
+        <span class="dot" onclick="currentSlide(6)"></span> 
+        <span class="dot" onclick="currentSlide(7)"></span> 
+        <span class="dot" onclick="currentSlide(8)"></span> 
+        <span class="dot" onclick="currentSlide(9)"></span> 
+      </div>
+
+      <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        </script>
+      </div>
     </div>
+  </div>
   </div>
 </section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <h3 class="title is-5" style="background:RoyalBlue; color:white; display:inline;">
-      Please cite the following if you make use of the dataset.
-     </h3>
   
-    <pre><code>@inproceedings{lee2019context,
-  author    = {Lee, Jiyoung and Kim, Seungryong and Kim, Sunok and Park, Jungin and Sohn, Kwanghoonn},
-  title     = {Context-aware emotion recognition networks},
-  booktitle = {Proceedings of the IEEE/CVF international conference on computer vision},
-  year      = {2019},
+    <pre><code>@inproceedings{jeong2024read,
+  author    = {Jeong, Yujin and Kim, Yunji and Chun, Sanghyuk and Lee, Jiyoung},
+  title     = {Read, Watch and Scream! Sound Generation from Text and Video},
+  year      = {2024},
 }</code></pre>
   </div>
 </section>
 
 
 
-<section class="section">
-  <div class="container is-max-desktop content">
-    <h2 class="title is-3">Acknowledgements</h2>
-    <div class="column is-full-width">
-      <p>
-        This research was supported by Next-Generation Information Computing Development Program through the National Research Foundation of Korea(NRF) funded by the Ministry of Science and ICT (NRF-2017M3C4A7069370).
-      </p>
-    </div>
-  </div>
-
-</section>
 
 <footer class="footer">
   <div class="container">
