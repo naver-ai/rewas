@@ -1,0 +1,282 @@
+action: train_avsync_model
+model:
+  target: encoder.model.sync_model.Synchformer
+  params:
+    afeat_extractor:
+      is_trainable: false
+      target: encoder.model.modules.feat_extractors.audio.ast.AST
+      params:
+        ckpt_path: /scratch/project_462000293/vladimir/logs/sync/avclip_models/23-12-22T16-13-38/checkpoints/epoch_e28.pt
+        extract_features: true
+        max_spec_t: 66
+        factorize_freq_time: true
+        agg_freq_module: TransformerEncoderLayer
+        agg_time_module: torch.nn.Identity
+        add_global_repr: false
+    vfeat_extractor:
+      is_trainable: false
+      target: encoder.model.modules.feat_extractors.visual.motionformer.MotionFormer
+      params:
+        ckpt_path: /scratch/project_462000293/vladimir/logs/sync/avclip_models/23-12-22T16-13-38/checkpoints/epoch_e28.pt
+        extract_features: true
+        factorize_space_time: true
+        agg_space_module: TransformerEncoderLayer
+        agg_time_module: torch.nn.Identity
+        add_global_repr: false
+    aproj:
+      target: torch.nn.Linear
+      params:
+        in_features: 768
+        out_features: 768
+    vproj:
+      target: torch.nn.Linear
+      params:
+        in_features: 768
+        out_features: 768
+    transformer:
+      target: encoder.model.sync_model.GlobalTransformer
+      params:
+        n_layer: 3
+        n_head: 8
+        n_embd: 768
+        tok_pdrop: 0.0
+        embd_pdrop: 0.1
+        resid_pdrop: 0.1
+        attn_pdrop: 0.1
+        pos_emb_cfg:
+          target: encoder.model.modules.transformer.RandInitPositionalEncoding
+          params:
+            block_shape:
+            - 198
+            n_embd: 768
+        off_head_cfg:
+          target: torch.nn.Linear
+          params:
+            in_features: 768
+            out_features: 21
+training:
+  base_learning_rate: 2.0e-06
+  base_batch_size: 16
+  num_workers: 7
+  num_epochs: 10000
+  patience: 50
+  to_max_metric: true
+  metric_name: accuracy_1
+  early_stop_phase: valid
+  use_half_precision: true
+  seed: 1337
+  compile: false
+  skip_test: false
+  run_test_only: false
+  resume: false
+  finetune: false
+  dist_backend: nccl
+  max_clip_norm: 1
+  lr_scheduler:
+    name: constant_with_warmup
+    warmup: 1000
+  optimizer:
+    name: adam
+    betas:
+    - 0.9
+    - 0.999
+    momentum: 0.9
+    weight_decay: 0
+  local_rank: 0
+  global_rank: 0
+  world_size: 32
+data:
+  offset_type: grid
+  num_off_cls: 21
+  prob_oos: null
+  max_off_sec: 2
+  crop_len_sec: 5
+  step_size_seg: 0.5
+  vids_path: /scratch/project_462000293/vladimir/data/audioset/h264_video_25fps_256side_16000hz_aac/
+  size_before_crop: 256
+  input_size: 224
+  segment_size_vframes: 16
+  vfps: 25
+  afps: 16000
+  n_segments: 14
+  do_offset: true
+  p_color_jitter: 0.0
+  p_gray_scale: 0.0
+  sometimes_upscale_p: 0.0
+  is_spatial_crop_random: true
+  is_temporal_crop_random: true
+  audio_jitter_sec: 0.05
+  p_horizontal_flip: 0.5
+  p_audio_aug: 0.0
+  dataset:
+    target: dataset.audioset.AudioSet
+    params:
+      load_fixed_offsets_on:
+      - valid
+      - test
+      vis_load_backend: read_video
+      size_ratio: null
+transform_sequence_train:
+- target: encoder.transforms.EqualifyFromRight
+  params:
+    clip_max_len_sec: 10
+- target: encoder.transforms.RGBSpatialCropSometimesUpscale
+  params:
+    sometimes_p: 0.0
+    smaller_input_size: 192
+    target_input_size: 224
+    is_random: true
+- target: encoder.transforms.TemporalCropAndOffset
+  params:
+    crop_len_sec: 5
+    max_off_sec: 2
+    max_wiggle_sec: 0.05
+    do_offset: true
+    offset_type: grid
+    prob_oos: null
+    grid_size: 21
+    segment_size_vframes: 16
+    n_segments: 14
+    step_size_seg: 0.5
+    vfps: 25
+- target: encoder.transforms.RandomApplyColorDistortion
+  params:
+    p_color_jitter: 0.0
+    s: 1.0
+    p_gray_scale: 0.0
+- target: encoder.transforms.RandomHorizontalFlip
+  params:
+    p: 0.5
+- target: encoder.transforms.AudioRandomReverb
+  params:
+    p: 0.0
+- target: encoder.transforms.AudioRandomVolume
+  params:
+    p: 0.0
+    gain: 2.0
+    gain_type: amplitude
+- target: encoder.transforms.AudioRandomPitchShift
+  params:
+    p: 0.0
+    shift: 1000
+- target: encoder.transforms.AudioRandomLowpassFilter
+  params:
+    p: 0.0
+    cutoff_freq: 100
+- target: encoder.transforms.AudioRandomGaussNoise
+  params:
+    p: 0.0
+    amplitude: 0.01
+- target: encoder.transforms.GenerateMultipleSegments
+  params:
+    segment_size_vframes: 16
+    n_segments: 14
+    is_start_random: true
+    step_size_seg: 0.5
+- target: encoder.transforms.RGBToHalfToZeroOne
+- target: encoder.transforms.RGBNormalize
+  params:
+    mean:
+    - 0.5
+    - 0.5
+    - 0.5
+    std:
+    - 0.5
+    - 0.5
+    - 0.5
+- target: encoder.transforms.AudioMelSpectrogram
+  params:
+    sample_rate: 16000
+    win_length: 400
+    hop_length: 160
+    n_fft: 1024
+    n_mels: 128
+- target: encoder.transforms.AudioLog
+- target: encoder.transforms.PadOrTruncate
+  params:
+    max_spec_t: 66
+- target: encoder.transforms.AudioNormalizeAST
+  params:
+    mean: -4.2677393
+    std: 4.5689974
+- target: encoder.transforms.PermuteStreams
+  params:
+    einops_order_audio: S F T -> S 1 F T
+    einops_order_rgb: S T C H W -> S T C H W
+transform_sequence_test:
+- target: encoder.transforms.EqualifyFromRight
+- target: encoder.transforms.RGBSpatialCrop
+  params:
+    input_size: 224
+    is_random: false
+- target: encoder.transforms.TemporalCropAndOffset
+  params:
+    crop_len_sec: 5
+    max_off_sec: 2
+    max_wiggle_sec: 0.0
+    do_offset: true
+    grid_size: 21
+    offset_type: grid
+    prob_oos: null
+    segment_size_vframes: 16
+    n_segments: 14
+    step_size_seg: 0.5
+    vfps: 25
+- target: encoder.transforms.GenerateMultipleSegments
+  params:
+    segment_size_vframes: 16
+    n_segments: 14
+    is_start_random: false
+    step_size_seg: 0.5
+- target: encoder.transforms.RGBToHalfToZeroOne
+- target: encoder.transforms.RGBNormalize
+  params:
+    mean:
+    - 0.5
+    - 0.5
+    - 0.5
+    std:
+    - 0.5
+    - 0.5
+    - 0.5
+- target: encoder.transforms.AudioMelSpectrogram
+  params:
+    sample_rate: 16000
+    win_length: 400
+    hop_length: 160
+    n_fft: 1024
+    n_mels: 128
+- target: encoder.transforms.AudioLog
+- target: encoder.transforms.PadOrTruncate
+  params:
+    max_spec_t: 66
+- target: encoder.transforms.AudioNormalizeAST
+  params:
+    mean: -4.2677393
+    std: 4.5689974
+- target: encoder.transforms.PermuteStreams
+  params:
+    einops_order_audio: S F T -> S 1 F T
+    einops_order_rgb: S T C H W -> S T C H W
+logging:
+  logdir: /scratch/project_462000293/vladimir/logs/sync/sync_models/
+  log_code_state: true
+  log_frequency: 20
+  patterns_to_ignore:
+  - logs
+  - .git
+  - __pycache__
+  - data
+  - '*.pt'
+  - sbatch_logs
+  - '*.mp4'
+  - '*.wav'
+  - '*.jpg'
+  - '*.gif'
+  - misc*
+  vis_segment_sim: true
+  log_max_items: 500000
+  use_wandb: true
+start_time: 24-01-04T16-39-21
+config: ./configs/sync.yaml
+ckpt_path: /scratch/project_462000293/vladimir/logs/sync/sync_models/24-01-04T16-39-21/24-01-04T16-39-21.pt

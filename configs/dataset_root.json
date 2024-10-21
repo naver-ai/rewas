@@ -1,0 +1,23 @@
+{
+    "greatesthits": "/path/to/Greatest_Hits/data/",
+    "vggsound": "/path/to/vggsound/audiodata/",
+    "comments":{
+    },
+
+    "metadata":{
+        "path": {
+            "greatesthits":{
+                "train": "/path/to/Greatest_Hits/metadata/greatesthits_train_label.json", 
+                "test": "/path/to/Greatest_Hits/metadata/greatesthits_test_label.json",
+                "val": "/path/to/Greatest_Hits/metadata/greatesthits_val_label.json", 
+                "class_label_indices": "/path/to/Greatest_Hits/metadata/class_labels_indices.csv"
+            },
+            "vggsound":{
+                "train": "/path/to/vggsound/metadata/vggsound_train_label.json", 
+                "test": "/path/to/vggsound/metadata/vggsound_test_label.json",
+                "val": "/path/to/vggsound/metadata/vggsound_valid_label.json", 
+                "class_label_indices": "./vggsound.tsv"
+            }
+        }
+    }
+}
