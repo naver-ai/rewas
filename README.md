@@ -48,7 +48,7 @@ If the code raises the following error, 'No module named 'pytorch_lightning.util
 
 1. Download checkpoints from [link](https://huggingface.co/lee-j/ReWaS/tree/main) that contains parameteres of ReWaS(AudioLDM-M) and phi.
 
-2. Download the checkpoints of pretrained VAE, CLAP, 16kHz HiFiGAN, and 48kHz HiFiGAN from [AudioLDM-training](https://github.com/haoheliu/AudioLDM-training-finetuning?tab=readme-ov-file#download-checkpoints-and-dataset).
+2. Download the checkpoints of pretrained Synchformer, VAE, CLAP, 16kHz HiFiGAN, and 48kHz HiFiGAN from [Synchformer](https://github.com/v-iashin/Synchformer?tab=readme-ov-file#audio-visual-synchronization-models) and [AudioLDM-training](https://github.com/haoheliu/AudioLDM-training-finetuning?tab=readme-ov-file#download-checkpoints-and-dataset).
 
 
 ```shell
