@@ -1,6 +1,6 @@
 ## Read, Watch and Scream! Sound Generation from Text and Video
 
-[![arXiv](https://img.shields.io/badge/arXiv%20papr-2312.01998-b31b1b.svg)](https://arxiv.org/abs/2407.05551)
+[![arXiv](https://img.shields.io/badge/arXiv%20papr-2407.05551-b31b1b.svg)](https://arxiv.org/abs/2407.05551)
 [![Samples](https://img.shields.io/badge/Demo-Link-blue.svg)](https://naver-ai.github.io/rewas/)
 
 
