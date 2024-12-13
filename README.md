@@ -1,4 +1,4 @@
-## Read, Watch and Scream! Sound Generation from Text and Video
+## [AAAI'25] Read, Watch and Scream! Sound Generation from Text and Video
 
 [![arXiv](https://img.shields.io/badge/arXiv%20papr-2407.05551-b31b1b.svg)](https://arxiv.org/abs/2407.05551)
 [![Samples](https://img.shields.io/badge/Demo-Link-blue.svg)](https://naver-ai.github.io/rewas/)
@@ -9,8 +9,9 @@
 NAVER AI Lab
 
 --- 
-
-### We release the official code!
+### Updates
+- (12/2024) Our paper is accepted at AAAI 2025!
+- (10/2024) We release the official code!
 
 ---
 
